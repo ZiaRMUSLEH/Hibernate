@@ -29,8 +29,8 @@ public class RunnerFetch07 {
         //student1.getBookList().forEach(stu-> System.out.println(stu));
 
         // Get the book with ID: 101
-        Book07 book1 = session.get(Book07.class, 101L);
-        System.out.println("Book 1: "+ book1);
+//        Book07 book1 = session.get(Book07.class, 101L);
+//        System.out.println("Book 1: "+ book1);
 
         // Get the student information from the book object
         //System.out.println(book1.getStudent());
@@ -51,15 +51,15 @@ public class RunnerFetch07 {
         //resultList2.forEach(obj-> System.out.println(obj));
         //resultList2.forEach(System.out::println);
 
-//       //  Delete all the records from Book07 with SQL.
-//        String sqlQuery2 = "DELETE FROM t_book07";
-//        int deletedRowCount = session.createSQLQuery(sqlQuery2).executeUpdate();
-//        System.out.println("Deleted Row Count: "+deletedRowCount);
+        // Delete all the records from Book07 with SQL.
+        //String sqlQuery2 = "DELETE FROM t_book07";
+        //int deletedRowCount = session.createSQLQuery(sqlQuery2).executeUpdate();
+        //System.out.println("Deleted Row Count: "+deletedRowCount);
 
         // Delete all the records from Student07 with HQL.
-        String hqlQuery2 = "DELETE FROM Student07";
-        int deletedRowCountHql = session.createQuery(hqlQuery2).executeUpdate();
-        System.out.println("Deleted Row Count For HQL: "+deletedRowCountHql);
+        //String hqlQuery2 = "DELETE FROM Student07";
+        //int deletedRowCountHql = session.createQuery(hqlQuery2).executeUpdate();
+        //System.out.println("Deleted Row Count For HQL: "+deletedRowCountHql);
 
         /*
 
@@ -67,6 +67,17 @@ public class RunnerFetch07 {
         B Book (1)      ->
 
          */
+
+        // Remove A Book with Orphan Removal
+//        student1.getBookList().set(0, null);
+
+        // Write an HQL Query, which will bring students whose book name contains the word "Book".
+        String hqlQuery3 = "SELECT s FROM Student07 s JOIN s.bookList b WHERE b.name LIKE '%Book%'";
+        List<Student07> resultList3 = session.createQuery(hqlQuery3, Student07.class).getResultList();
+        for (Student07 stu : resultList3){
+            System.out.println(stu);
+        }
+
 
         tx.commit();
         session.close();

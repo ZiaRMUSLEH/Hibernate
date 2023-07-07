@@ -16,8 +16,28 @@ public class Student07 {
 
     private int grade;
 
-    @OneToMany(mappedBy = "student")
+    @OneToMany(mappedBy = "student", orphanRemoval = true, cascade = CascadeType.REMOVE)
+
+    /*
+
+        CascadeType.REMOVE: If the parent gets removed, children tables will get removed with it too.
+
+        Cascade.PERSIST:    If a Student is saved, you don't need to save the books separately. (Only when you already set the books for the Student)
+
+ */
+
     private List<Book07> bookList = new ArrayList<>();
+
+    // Constructor
+    public Student07() {
+    }
+
+    public Student07(Long id, String name, int grade) {
+        this.id = id;
+        this.name = name;
+        this.grade = grade;
+        //this.bookList = bookList;
+    }
 
     // Getter - Setter
     public Long getId() {
@@ -60,15 +80,5 @@ public class Student07 {
                 ", grade=" + grade +
                 //", bookList=" + bookList +
                 '}';
-    }
-
-    public Student07 (Long id, String name, int grade) {
-        this.id = id;
-        this.name = name;
-        this.grade = grade;
-        //this.bookList = bookList;
-    }
-
-    public Student07 () {
     }
 }
