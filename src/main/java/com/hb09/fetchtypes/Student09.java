@@ -8,6 +8,17 @@ import java.util.List;
 @Table(name = "t_student09")
 public class Student09 {
 
+    /*
+
+            1. If the next side is Many, then the default Type is LAZY.
+                    OneToMany
+                    ManyToMany
+            2. If the next side is One, then the default Type is EAGER.
+                    ManyToOne
+                    OneToOne
+
+     */
+
     @Id
     private Long id;
 
@@ -16,7 +27,7 @@ public class Student09 {
 
     private int grade;
 
-    @OneToMany(mappedBy = "student", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "student", cascade = CascadeType.ALL, fetch = FetchType.EAGER)     // CascadeType.REMOVE / CascadeType.PERSIST
     private List<Book09> bookList = new ArrayList<>();
 
     // Getter - Setter

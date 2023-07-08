@@ -1,35 +1,22 @@
 package HQL;
 
-
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-public class Student01 {
+public class Book01 {
     @Id
     private Long id;
 
     private String name;
 
-    private int grade;
-
-
-
-
-
-
-    @ManyToMany(mappedBy = "studentList")
-    private List<Book01> bookList = new ArrayList<>();
-
-
-
-
-
-
-
-
-
+    @ManyToMany
+    @JoinTable(name = "stid_bookid",
+            joinColumns ={@JoinColumn(name = "stu_id")},
+            inverseJoinColumns = {@JoinColumn(name = "book_id")}
+    )
+    private List<Student01> studentList = new ArrayList<>();
 
     public Long getId () {
         return id;
@@ -47,29 +34,20 @@ public class Student01 {
         this.name = name;
     }
 
-    public int getGrade () {
-        return grade;
+    public List<Student01> getStudentList () {
+        return studentList;
     }
 
-    public void setGrade (int grade) {
-        this.grade = grade;
-    }
-
-    public List<Book01> getBookList () {
-        return bookList;
-    }
-
-    public void setBookList (List<Book01> bookList) {
-        this.bookList = bookList;
+    public void setStudentList (List<Student01> studentList) {
+        this.studentList = studentList;
     }
 
     @Override
     public String toString () {
-        return "Student01{" +
+        return "Book01{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
-                ", grade=" + grade +
-        // ", bookList=" + bookList +
+                ", studentList=" + studentList +
                 '}';
     }
 }

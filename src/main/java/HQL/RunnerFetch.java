@@ -18,11 +18,19 @@ public class RunnerFetch {
 
         String hq1 = "FROM Student01";
         List <Student01>  studentList = session.createQuery(hq1).getResultList();
-        for(Student01 student: studentList){
-            System.out.println(student);
-        }
+        //studentList.forEach(student-> System.out.println(student));
 
-        //studentList.forEach(student-> System.out.println(Arrays.toString(student)));
+        String hq2 = "FROM Student01 S";
+        List <Student01>  studentList1 = session.createQuery(hq2).getResultList();
+        //studentList1.forEach(student-> System.out.println(student));
+
+        String hq3 = "SELECT s.name FROM Student01 s WHERE name = 'Jace'";
+        List<Object> resultList1 = session.createQuery(hq3).getResultList();
+
+        resultList1.forEach(t-> System.out.println(t));
+
+
+
 
 
 
