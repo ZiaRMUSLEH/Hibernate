@@ -39,6 +39,15 @@
 
         <property name="format_sql">true</property>
 
+        <!--        This property enables the second-level cache in Hibernate. When set to "true",-->
+        <property name="hibernate.cache.use_second_level_cache">true</property>
+        <!--        This property enables the query cache in Hibernate. When set to "true",-->
+        <property name="hibernate.cache.use_query_cache">true</property>
+        <!--        This property specifies the implementation class for the cache region factory in Hibernate-->
+        <property name="hibernate.cache.region.factory_class">org.hibernate.cache.jcache.internal.JCacheRegionFactory</property>
+        <!--        This property specifies the cache provider implementation class to be used by Hibernate-->
+        <property name="hibernate.javax.cache.provider">org.ehcache.jsr107.EhcacheCachingProvider</property>
+
     </session-factory>
 
 </hibernate-configuration>

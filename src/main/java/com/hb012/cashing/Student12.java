@@ -1,34 +1,38 @@
-package com.hb11.criteriaapi;
+package com.hb012.cashing;
+
+import org.hibernate.annotations.CacheConcurrencyStrategy;
 
 import javax.persistence.*;
 
 @Entity
-@Table(name = "t_student11")
-public class Student11 {
+
+@Cacheable // this ann. is to enable caching for a method and specify the caching configuration
+@org.hibernate.annotations.Cache(usage = CacheConcurrencyStrategy.READ_WRITE,region = "Student12")
+
+@Table(name = "tbl_Student12")
+public class Student12 {
+
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+
+    @Column(name = "std_name",nullable = false)
     private String name;
 
     private int grade;
 
-    public Student11 (String name, int grade) {
-        this.name = name;
-        this.grade = grade;
-    }
-
-    // Getter - Setter
+    //getter and setter
 
 
     public Long getId() {
         return id;
     }
 
-    //public void setId(Long id) {
-    //    this.id = id;
-    //}
+//    public void setId(Long id) {
+//        this.id = id;
+//    }
 
     public String getName() {
         return name;
@@ -46,15 +50,15 @@ public class Student11 {
         this.grade = grade;
     }
 
+    //To string method
+
+
     @Override
     public String toString() {
-        return "Student11{" +
+        return "Student12{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", grade=" + grade +
                 '}';
-    }
-
-    public Student11 () {
     }
 }
