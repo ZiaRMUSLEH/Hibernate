@@ -21,7 +21,7 @@ public class RunnerFetchEmployee {
 
         System.out.println("Delete method is called ...");
 
-        session.delete(employee1);;
+        session.delete(employee1);
 
 
 
